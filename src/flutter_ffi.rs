@@ -1145,11 +1145,11 @@ pub fn main_get_socks() -> Vec<String> {
 }
 
 pub fn main_get_app_name() -> String {
-    get_app_name()
+    "OneGate".to_owned()
 }
 
 pub fn main_get_app_name_sync() -> SyncReturn<String> {
-    SyncReturn(get_app_name())
+    SyncReturn("OneGate".to_owned())
 }
 
 pub fn main_uri_prefix_sync() -> SyncReturn<String> {
@@ -2063,7 +2063,7 @@ pub fn session_send_mouse(session_id: SessionID, msg: String) {
             .unwrap_or(0);
         let y = m
             .get("y")
-            .map(|x| x.parse::<i32>().unwrap_or(0))
+            .map(|y| y.parse::<i32>().unwrap_or(0))
             .unwrap_or(0);
         let mut mask = 0;
         if let Some(_type) = m.get("type") {
