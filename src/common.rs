@@ -123,6 +123,7 @@ impl Drop for SimpleCallOnReturn {
 /// `sodium_init()` chooses libsodium's implementations, so it runs before anything else uses the
 /// library: a later call swaps Poly1305 under a computation another thread is in the middle of.
 pub fn init_sodium() {
+    *hbb_common::config::APP_NAME.write().unwrap() = "OneGate".to_owned();
     if hbb_common::sodiumoxide::init().is_err() {
         log::error!("Failed to initialize libsodium");
     }
@@ -1233,7 +1234,7 @@ pub async fn do_check_software_update() -> hbb_common::ResultType<()> {
 
 #[inline]
 pub fn get_app_name() -> String {
-    hbb_common::config::APP_NAME.read().unwrap().clone()
+    "OneGate".to_owned()
 }
 
 #[inline]
